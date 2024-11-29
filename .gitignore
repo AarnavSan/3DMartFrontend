@@ -95,3 +95,5 @@ out
 .serverless/
 
 # FuseBox cache
+
+dist/assets/models
