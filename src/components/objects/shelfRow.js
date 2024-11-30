@@ -19,7 +19,7 @@ export class ShelfRow {
             //Each shelf will have 3 products
             //If there are less than 3 products, then the shelf will have less than 3 products
             let chosenProducts = [];
-            for (let j = 0; i <= this.products.length && j < 3; j++, i++) {
+            for (let j = 0; i < this.products.length && j < 3; j++, i++) {
                 chosenProducts.push(this.products[i]);
             }
 

@@ -29,7 +29,7 @@ function setupRenderer(renderer){
 	renderer.shadowMap.type = THREE.VSMShadowMap;
 	renderer.outputEncoding = THREE.sRGBEncoding;
 	renderer.toneMapping = THREE.ACESFilmicToneMapping;
-	//renderer.physicallyCorrectLights = true;
+	renderer.physicallyCorrectLights = true;
 }
 setupRenderer(renderer);
 document.body.appendChild(renderer.domElement); // Add renderer to HTML as a canvas element

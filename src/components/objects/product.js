@@ -1,11 +1,15 @@
 export class Product{
 
-    constructor(name, type, price, quantity, nutrition, shelf_number = null){
+    constructor(name, type, price, quantity, nutrition, shelf_number = null, image = null, scale = null, model_type = null, rowsOfProduct = 4){
         this.name = name;
         this.type = type;
         this.price = price;
         this.quantity = quantity;
+        this.model_type = model_type;
+        this.scale = scale;
+        this.image = image;
         this.shelf_number = shelf_number;
+        this.rowsOfProduct = rowsOfProduct;
         this.nutritionFacts = new NutritionFacts(nutrition.calories, nutrition.carbs, nutrition.fat, nutrition.fiber, nutrition.minerals, nutrition.potassium, nutrition.protein, nutrition.sodium, nutrition.sugars, nutrition.vitamins);
     }
     

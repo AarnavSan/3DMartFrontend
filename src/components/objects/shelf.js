@@ -56,9 +56,11 @@ export class Shelf {
         this.spawnShelfRack(scene, {...shelfPosition}, rotation);
     
         //Spawn shelf 3 at shelfPosition
-        shelfPosition.y += 0.4;
+        shelfPosition.y += 0.6;
         this.shelfPositions.push({...shelfPosition});
         this.spawnShelfRack(scene, {...shelfPosition}, rotation);
+        
+        console.log(this);
     }
 
     spawnShelfRack(scene, position, rotation){
@@ -75,18 +77,30 @@ export class Shelf {
 
     spawnProducts(scene) {
         //Spawn all products on the shelf
+        console.log("Length of products: " + this.products.length);
+        console.log(this.products);
         for (let i = 0; i < this.products.length; i++) {
             let product = this.products[i];
             let position = {...this.shelfPositions[i]};
-            position.x -= 1.5;
-            position.y += 1.1;
-            position.z += this.rotation.y == 0 ? -0.2 : 0.2;
+
+            //Since the center of the shelf is at the center of the shelf wall
+            //We need to offset the product to the left and forward (relative to shelf direction)
+            //The offset is based on the width of the shelf
+            const X_AXIS_OFFSET = 1.5;
+            const Z_AXIS_OFFSET = 0.2;
+            const Y_AXIS_OFFSET = 1.05;
+
+            position.x -= X_AXIS_OFFSET;
+            position.y += Y_AXIS_OFFSET;
+            position.z += this.rotation.y == 0 ? -Z_AXIS_OFFSET : Z_AXIS_OFFSET;
             this.spawnProduct(scene, product, position);
         }
     }
 
     spawnProduct(scene, product, position) {
         //Spawn product at given position
-        place_box_products(scene, position, this.rotation, {x: 1, y: 1, z: 0.2}, 4, product);
+        
+        console.log(product);
+        place_box_products(scene, position, this.rotation, product);
     }
 }
