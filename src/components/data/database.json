@@ -1,0 +1,400 @@
+[
+    {
+        "type": "breakfast_cereals",
+        "data": [
+            {
+                "name": "Lucky Charms",
+                "type": "General Mills",
+                "nutrition": {
+                    "calories": 110,
+                    "protein": 2,
+                    "fat": 1,
+                    "sodium": 180,
+                    "fiber": 0,
+                    "carbs": 10,
+                    "sugars": 10,
+                    "potassium": 45,
+                    "vitamins": "A, C, D, E, B6, B12",
+                    "minerals": "Iron, Zinc, Calcium"
+                },
+                "price": 3.99,
+                "quantity": 50
+            },
+            {
+                "name": "Frosted Flakes",
+                "type": "Kellogg's",
+                "nutrition": {
+                    "calories": 110,
+                    "protein": 1,
+                    "fat": 0,
+                    "sodium": 200,
+                    "fiber": 1,
+                    "carbs": 10,
+                    "sugars": 10,
+                    "potassium": 30,
+                    "vitamins": "A, C, D, E, B6, B12",
+                    "minerals": "Iron, Zinc, Calcium"
+                },
+                "price": 2.99,
+                "quantity": 75
+            },
+            {
+                "name": "Cinnamon Toast Crunch",
+                "type": "General Mills",
+                "nutrition": {
+                    "calories": 130,
+                    "protein": 1,
+                    "fat": 3,
+                    "sodium": 210,
+                    "fiber": 0,
+                    "carbs": 10,
+                    "sugars": 9,
+                    "potassium": 45,
+                    "vitamins": "A, C, D, E, B6, B12",
+                    "minerals": "Iron, Zinc, Calcium"
+                },
+                "price": 4.49,
+                "quantity": 60
+            }
+        ]
+    },
+    {
+        "type": "pasta",
+        "data": [
+            {
+                "name": "Penne",
+                "type": "Barilla",
+                "nutrition": {
+                    "calories": 200,
+                    "protein": 7,
+                    "fat": 1,
+                    "sodium": 0,
+                    "fiber": 2,
+                    "carbs": 42,
+                    "sugars": 2,
+                    "potassium": 0,
+                    "vitamins": "B1, B2, B3",
+                    "minerals": "Iron"
+                },
+                "price": 1.29,
+                "quantity": 100
+            },
+            {
+                "name": "Spaghetti",
+                "type": "De Cecco",
+                "nutrition": {
+                    "calories": 210,
+                    "protein": 8,
+                    "fat": 1,
+                    "sodium": 0,
+                    "fiber": 3,
+                    "carbs": 41,
+                    "sugars": 2,
+                    "potassium": 0,
+                    "vitamins": "B1, B2, B3",
+                    "minerals": "Iron"
+                },
+                "price": 1.49,
+                "quantity": 120
+            },
+            {
+                "name": "Fusilli",
+                "type": "Ronzoni",
+                "nutrition": {
+                    "calories": 200,
+                    "protein": 7,
+                    "fat": 1,
+                    "sodium": 0,
+                    "fiber": 2,
+                    "carbs": 42,
+                    "sugars": 2,
+                    "potassium": 0,
+                    "vitamins": "B1, B2, B3",
+                    "minerals": "Iron"
+                },
+                "price": 1.39,
+                "quantity": 80
+            },
+            {
+                "name": "Farfalle",
+                "type": "Barilla",
+                "nutrition": {
+                    "calories": 210,
+                    "protein": 7,
+                    "fat": 1,
+                    "sodium": 0,
+                    "fiber": 2,
+                    "carbs": 42,
+                    "sugars": 2,
+                    "potassium": 0,
+                    "vitamins": "B1, B2, B3",
+                    "minerals": "Iron"
+                },
+                "price": 1.59,
+                "quantity": 90
+            },
+            {
+                "name": "Linguine",
+                "type": "De Cecco",
+                "nutrition": {
+                    "calories": 210,
+                    "protein": 8,
+                    "fat": 1,
+                    "sodium": 0,
+                    "fiber": 3,
+                    "carbs": 41,
+                    "sugars": 2,
+                    "potassium": 0,
+                    "vitamins": "B1, B2, B3",
+                    "minerals": "Iron"
+                },
+                "price": 1.69,
+                "quantity": 110
+            },
+            {
+                "name": "Macaroni",
+                "type": "Ronzoni",
+                "nutrition": {
+                    "calories": 200,
+                    "protein": 7,
+                    "fat": 1,
+                    "sodium": 0,
+                    "fiber": 2,
+                    "carbs": 42,
+                    "sugars": 2,
+                    "potassium": 0,
+                    "vitamins": "B1, B2, B3",
+                    "minerals": "Iron"
+                },
+                "price": 1.29,
+                "quantity": 130
+            },
+            {
+                "name": "Rigatoni",
+                "type": "Barilla",
+                "nutrition": {
+                    "calories": 210,
+                    "protein": 7,
+                    "fat": 1,
+                    "sodium": 0,
+                    "fiber": 2,
+                    "carbs": 42,
+                    "sugars": 2,
+                    "potassium": 0,
+                    "vitamins": "B1, B2, B3",
+                    "minerals": "Iron"
+                },
+                "price": 1.49,
+                "quantity": 95
+            },
+            {
+                "name": "Orzo",
+                "type": "De Cecco",
+                "nutrition": {
+                    "calories": 200,
+                    "protein": 7,
+                    "fat": 1,
+                    "sodium": 0,
+                    "fiber": 2,
+                    "carbs": 42,
+                    "sugars": 2,
+                    "potassium": 0,
+                    "vitamins": "B1, B2, B3",
+                    "minerals": "Iron"
+                },
+                "price": 1.39,
+                "quantity": 85
+            },
+            {
+                "name": "Lasagna",
+                "type": "Ronzoni",
+                "nutrition": {
+                    "calories": 210,
+                    "protein": 8,
+                    "fat": 1,
+                    "sodium": 0,
+                    "fiber": 3,
+                    "carbs": 41,
+                    "sugars": 2,
+                    "potassium": 0,
+                    "vitamins": "B1, B2, B3",
+                    "minerals": "Iron"
+                },
+                "price": 1.79,
+                "quantity": 70
+            }
+        ]
+    },
+   {
+        "type": "canned_goods",
+        "data": [
+            {
+                "name": "Green Beans",
+                "type": "Del Monte",
+                "nutrition": {
+                    "calories": 20,
+                    "protein": 1,
+                    "fat": 0,
+                    "sodium": 200,
+                    "fiber": 2,
+                    "carbs": 4,
+                    "sugars": 2,
+                    "potassium": 0,
+                    "vitamins": "A, C",
+                    "minerals": "Iron"
+                },
+                "price": 0.99,
+                "quantity": 150
+            },
+            {
+                "name": "Corn",
+                "type": "Green Giant",
+                "nutrition": {
+                    "calories": 60,
+                    "protein": 2,
+                    "fat": 0,
+                    "sodium": 200,
+                    "fiber": 2,
+                    "carbs": 14,
+                    "sugars": 2,
+                    "potassium": 0,
+                    "vitamins": "A, C",
+                    "minerals": "Iron"
+                },
+                "price": 1.29,
+                "quantity": 200
+            },
+            {
+                "name": "Peas",
+                "type": "Del Monte",
+                "nutrition": {
+                    "calories": 70,
+                    "protein": 4,
+                    "fat": 0,
+                    "sodium": 200,
+                    "fiber": 4,
+                    "carbs": 14,
+                    "sugars": 2,
+                    "potassium": 0,
+                    "vitamins": "A, C",
+                    "minerals": "Iron"
+                },
+                "price": 1.49,
+                "quantity": 175
+            },
+            {
+                "name": "Carrots",
+                "type": "Green Giant",
+                "nutrition": {
+                    "calories": 50,
+                    "protein": 1,
+                    "fat": 0,
+                    "sodium": 200,
+                    "fiber": 2,
+                    "carbs": 12,
+                    "sugars": 2,
+                    "potassium": 0,
+                    "vitamins": "A, C",
+                    "minerals": "Iron"
+                },
+                "price": 1.19,
+                "quantity": 225
+            },
+            {
+                "name": "Tomatoes",
+                "type": "Hunt's",
+                "nutrition": {
+                    "calories": 30,
+                    "protein": 1,
+                    "fat": 0,
+                    "sodium": 200,
+                    "fiber": 2,
+                    "carbs": 6,
+                    "sugars": 2,
+                    "potassium": 0,
+                    "vitamins": "A, C",
+                    "minerals": "Iron"
+                },
+                "price": 0.89,
+                "quantity": 175
+            }
+        ]
+    },
+    {
+        "type": "candy",
+        "data": [
+            {
+                "name": "Snickers",
+                "type": "Mars",
+                "nutrition": {
+                    "calories": 250,
+                    "protein": 4,
+                    "fat": 12,
+                    "sodium": 120,
+                    "fiber": 1,
+                    "carbs": 33,
+                    "sugars": 27,
+                    "potassium": 120,
+                    "vitamins": "None",
+                    "minerals": "Iron, Calcium"
+                },
+                "price": 1.49,
+                "quantity": 100
+            },
+            {
+                "name": "M&M's",
+                "type": "Mars",
+                "nutrition": {
+                    "calories": 230,
+                    "protein": 2,
+                    "fat": 10,
+                    "sodium": 30,
+                    "fiber": 1,
+                    "carbs": 34,
+                    "sugars": 30,
+                    "potassium": 100,
+                    "vitamins": "None",
+                    "minerals": "Iron, Calcium"
+                },
+                "price": 1.29,
+                "quantity": 150
+            },
+            {
+                "name": "Skittles",
+                "type": "Wrigley",
+                "nutrition": {
+                    "calories": 250,
+                    "protein": 0,
+                    "fat": 2,
+                    "sodium": 10,
+                    "fiber": 0,
+                    "carbs": 56,
+                    "sugars": 46,
+                    "potassium": 0,
+                    "vitamins": "None",
+                    "minerals": "None"
+                },
+                "price": 1.19,
+                "quantity": 200
+            },
+            {
+                "name": "Twix",
+                "type": "Mars",
+                "nutrition": {
+                    "calories": 250,
+                    "protein": 2,
+                    "fat": 12,
+                    "sodium": 140,
+                    "fiber": 1,
+                    "carbs": 34,
+                    "sugars": 28,
+                    "potassium": 100,
+                    "vitamins": "None",
+                    "minerals": "Iron, Calcium"
+                },
+                "price": 1.39,
+                "quantity": 120
+            }
+    ]
+    }
+]   

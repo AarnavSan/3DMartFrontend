@@ -12,10 +12,35 @@ function spawnRoom(scene){
         scene.add(gltf.scene);
     });
 
-    const mainLight = new THREE.DirectionalLight(0xffffff, 0.5); // Create light
-    scene.add(mainLight); // Add light to canvas
+}
 
-    spawnShelves(scene);
+
+function spawnShelves(scene, shelfCount){
+    //Spawn first row of shelves on the left wall
+    spawnShelfRow(scene, 
+        {x: -7, y: 0.1, z: -9.9}, 
+        {x: 0, y: -Math.PI, z: 0}, 
+        'x', 
+        4);
+
+    //Spawn second and third row of shelves in the middle of the store
+    spawnShelfRow(scene, 
+        {x: -7, y: 0.1, z: 0}, 
+        {x: 0, y: -Math.PI, z: 0}, 
+        'x', 
+        4);
+    spawnShelfRow(scene, 
+        {x: -7, y: 0.1, z: 0}, 
+        {x: 0, y: 0, z: 0}, 
+        'x', 
+        4);
+
+    //Spawn back row of shelves in the middle of the store
+    spawnShelfRow(scene, 
+        {x: 9, y: 0.1, z: -8}, 
+        {x: 0, y: Math.PI/2, z: 0}, 
+        'z', 
+        7);
 }
 
 function spawnShelfRow(scene, startingPosition, rotation, directionOfShelves, shelfCount){
@@ -70,34 +95,6 @@ function spawnShelfRack(scene, position, rotation){
         gltf.scene.rotation.set(rotation.x, rotation.y, rotation.z);
         console.log(gltf.scene);
     });
-}
-
-function spawnShelves(scene, shelfCount){
-    //Spawn first row of shelves on the left wall
-    spawnShelfRow(scene, 
-        {x: -7, y: 0.1, z: -9.9}, 
-        {x: 0, y: -Math.PI, z: 0}, 
-        'x', 
-        4);
-
-    //Spawn second and third row of shelves in the middle of the store
-    spawnShelfRow(scene, 
-        {x: -7, y: 0.1, z: 0}, 
-        {x: 0, y: -Math.PI, z: 0}, 
-        'x', 
-        4);
-    spawnShelfRow(scene, 
-        {x: -7, y: 0.1, z: 0}, 
-        {x: 0, y: 0, z: 0}, 
-        'x', 
-        4);
-
-    //Spawn second and third row of shelves in the middle of the store
-    spawnShelfRow(scene, 
-        {x: 9, y: 0.1, z: -8}, 
-        {x: 0, y: Math.PI/2, z: 0}, 
-        'z', 
-        8);
 }
 
 export { spawnRoom };

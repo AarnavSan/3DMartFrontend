@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
-function spawnBoxProduct(scene, position, rotation, scale, productImageFront, productImageSide, productImageBack, productImageTopAndBottom){
+function spawnBoxProduct(scene, position, rotation, scale, productImageFront="https://cdn.pixabay.com/photo/2024/11/27/18/38/landscape-9228975_1280.jpg", productImageSide="https://cdn.pixabay.com/photo/2024/11/27/18/38/landscape-9228975_1280.jpg", productImageBack="https://cdn.pixabay.com/photo/2024/11/27/18/38/landscape-9228975_1280.jpg", productImageTopAndBottom="https://cdn.pixabay.com/photo/2024/11/27/18/38/landscape-9228975_1280.jpg"){
     //Create a box geometry
     const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
     //Create a texture loader

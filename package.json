@@ -11,7 +11,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "file-loader": "^6.2.0",
+    "mongodb": "^6.11.0",
+    "mongoose": "^8.8.3",
     "three": "^0.170.0",
     "url-loader": "^4.1.1"
   },
