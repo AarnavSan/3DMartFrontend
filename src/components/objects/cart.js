@@ -4,17 +4,16 @@ export class Cart{
     constructor(){
         this.products = [];
         this.totalAmount = 0;
-        this.totalCost = 0;
+        this.totalPrice = 0;
     }
 
-    addProduct(newProduct){
+    addProduct(newProduct, quantity=1){
         let productExists = false;
         console.log(this);
         this.products.forEach(existingProduct => {
             if(existingProduct.name === newProduct.name){
-                existingProduct.quantity += 1;
+                existingProduct.quantity += quantity;
                 this.recalculateAmountAndCost();
-                console.log('Product already exists in cart');
                 productExists = true;
                 return;
             }
@@ -24,7 +23,7 @@ export class Cart{
             return;
         }
         let addedProduct = {...newProduct};
-        addedProduct.quantity = 1;
+        addedProduct.quantity = quantity;
         this.products.push(addedProduct);
         this.recalculateAmountAndCost();
     }
@@ -32,15 +31,16 @@ export class Cart{
     removeProduct(product){
         this.products = this.products.filter(item => item.product_id !== product.product_id);
         this.totalAmount -= 1;
-        this.totalCost -= product.price;
+        this.totalPrice -= product.price;
     }
 
     recalculateAmountAndCost(){
         this.totalAmount = 0;
-        this.totalCost = 0;
+        this.totalPrice = 0;
         this.products.forEach(product => {
             this.totalAmount += product.quantity;
-            this.totalCost += product.price * product.quantity;
+            this.totalPrice += product.price * product.quantity;
         });
+        console.log(this.totalPrice);
     }
 }

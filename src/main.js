@@ -57,7 +57,7 @@ controls.target = new THREE.Vector3(0,-10,-10);
 camera.position.set( 0, 10, 0 );
 controls.update();
 
-let groceryStore = new GroceryStore(scene, interactionManager, camera, renderer, database);
+let groceryStore = new GroceryStore(document, scene, interactionManager, camera, renderer, database);
 groceryStore.create_room();
 
 // //Spawn Grocery Store Room model
@@ -73,6 +73,7 @@ groceryStore.create_room();
 // 	"https://cdn.pixabay.com/photo/2024/03/08/16/22/clouds-8621202_1280.jpg",
 // 	"https://cdn.pixabay.com/photo/2021/11/21/21/14/mountain-6815304_1280.jpg");
 
+
 function animate() {
 
 	requestAnimationFrame( animate );
@@ -82,7 +83,5 @@ function animate() {
 	interactionManager.update();
 
 	renderer.render( scene, camera );
-	
 }
 animate();
-

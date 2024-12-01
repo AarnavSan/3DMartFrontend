@@ -78,7 +78,7 @@ function spawnHitBox(scene, position, rotation, interactionManager, product){
         //console.log(event);
         if(event.target.material.opacity === 0.4){
             //console.log(product.parent);
-            product.addThisProductToCart();
+            product.viewThisProduct();
         }
       });
 

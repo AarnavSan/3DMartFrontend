@@ -18,8 +18,14 @@ export class Product{
         this.nutritionFacts = new NutritionFacts(nutrition.calories, nutrition.carbs, nutrition.fat, nutrition.fiber, nutrition.minerals, nutrition.potassium, nutrition.protein, nutrition.sodium, nutrition.sugars, nutrition.vitamins);
     }
     
-    addThisProductToCart(){
-        this.parent.parent.cart.addProduct(this);
+    viewThisProduct(){
+        let newProduct = {...this};
+        newProduct.quantity = 1;
+        this.parent.parent.openProductWindow(newProduct);
+    }
+
+    addThisProductToCart(quantity=1){
+        this.parent.parent.cart.addProduct(this, quantity);
     }
 }
 
