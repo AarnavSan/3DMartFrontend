@@ -61,10 +61,10 @@ export class ShelfGrid{
         }
     }
 
-    spawnShelfRows(scene){
+    spawnShelfRows(scene, interactionManager){
         for(let i = 0; i < this.shelfRows.length; i++){
             let shelfRow = this.shelfRows[i];
-            shelfRow.spawnAllShelves(scene);
+            shelfRow.spawnAllShelves(scene, interactionManager);
         }
     }
 }

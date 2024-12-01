@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { spawnBoxProduct, spawnCylinderProduct } from './create_products.js';
+import { spawnBoxProduct, spawnCylinderProduct, spawnHitBox } from './create_products.js';
 
 function place_box_products(scene, position, rotation, product){
     let productPosition = {x: position.x, y: position.y, z: position.z};
@@ -42,4 +42,8 @@ function place_box_products(scene, position, rotation, product){
     }
 }
 
-export {place_box_products};
+function place_hitbox(scene, position, rotation, interactionManager, product){
+    spawnHitBox(scene, position, rotation, interactionManager, product);
+}
+
+export {place_box_products, place_hitbox};

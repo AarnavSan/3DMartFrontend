@@ -2,7 +2,8 @@ import {Product} from './product.js';
 
 export class ProductCategory{
     
-    constructor(name, products_data, shelfRow = null){
+    constructor(parent, name, products_data, shelfRow = null){
+        this.parent = parent;
         this.name = name;
         this.products = this.unpackProducts(products_data);
         this.totalProducts = this.products.length;
@@ -11,6 +12,7 @@ export class ProductCategory{
         let products = [];
         for(let i = 0; i < products_data.length; i++){
             let product = new Product(
+                this,
                 products_data[i].name, 
                 products_data[i].type, 
                 products_data[i].price, 

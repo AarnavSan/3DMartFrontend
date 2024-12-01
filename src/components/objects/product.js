@@ -1,6 +1,11 @@
+import { v4 as uuidv4 } from 'uuid';
+
+
 export class Product{
 
-    constructor(name, type, price, quantity, nutrition, shelf_number = null, image = null, scale = null, model_type = null, rowsOfProduct = 4){
+    constructor(parent, name, type, price, quantity, nutrition, shelf_number = null, image = null, scale = null, model_type = null, rowsOfProduct = 4){
+        this.parent = parent;
+        this.product_id = uuidv4();
         this.name = name;
         this.type = type;
         this.price = price;
@@ -13,9 +18,8 @@ export class Product{
         this.nutritionFacts = new NutritionFacts(nutrition.calories, nutrition.carbs, nutrition.fat, nutrition.fiber, nutrition.minerals, nutrition.potassium, nutrition.protein, nutrition.sodium, nutrition.sugars, nutrition.vitamins);
     }
     
-    setupStoreData(){
-        this.productCategories = this.store_data.map(item => Object.values(item)[0]);
-        console.log(this.productCategories);
+    addThisProductToCart(){
+        this.parent.parent.cart.addProduct(this);
     }
 }
 

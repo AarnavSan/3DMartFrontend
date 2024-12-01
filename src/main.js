@@ -1,8 +1,9 @@
 import * as THREE from 'three';
 import { FirstPersonControls } from 'three/addons/controls/FirstPersonControls.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import {spawnRoom } from './components/render_room.js';
-import { spawnBoxProduct } from './components/threedplacerfunctions/create_products.js';
+
+import { InteractionManager } from 'three.interactive';
+
 import database from './components/data/database.json';
 import { GroceryStore } from './components/objects/grocerystore.js';
 
@@ -34,6 +35,13 @@ function setupRenderer(renderer){
 setupRenderer(renderer);
 document.body.appendChild(renderer.domElement); // Add renderer to HTML as a canvas element
 
+// Interaction Manager
+const interactionManager = new InteractionManager(
+	renderer,
+	camera,
+	renderer.domElement
+  );
+
 // Make Canvas Responsive
 window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight); // Update size
@@ -49,7 +57,7 @@ controls.target = new THREE.Vector3(0,-10,-10);
 camera.position.set( 0, 10, 0 );
 controls.update();
 
-let groceryStore = new GroceryStore(scene, camera, renderer, database);
+let groceryStore = new GroceryStore(scene, interactionManager, camera, renderer, database);
 groceryStore.create_room();
 
 // //Spawn Grocery Store Room model
@@ -71,6 +79,7 @@ function animate() {
 
 	// required if controls.enableDamping or controls.autoRotate are set to true
 	controls.update();
+	interactionManager.update();
 
 	renderer.render( scene, camera );
 	

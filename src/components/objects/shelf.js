@@ -2,7 +2,8 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import shelfWall from "../../public/assets/custom-models/Shelf Base Wall.glb";
 import shelf from "../../public/assets/custom-models/Shelf.glb";
-import { place_box_products } from '../threedplacerfunctions/place_products';
+import { place_box_products, place_hitbox } from '../threedplacerfunctions/place_products';
+import { int } from 'three/webgpu';
 
 export class Shelf {
 
@@ -23,7 +24,7 @@ export class Shelf {
         //Calculate which product to be returned based on order of products and base position
     }
 
-    spawnShelf(scene) {
+    spawnShelf(scene, interactionManager) {
         let position = this.position;
         let rotation = this.rotation;
         //SPAWN SHELF WALL
@@ -48,22 +49,23 @@ export class Shelf {
         this.shelfPositions.push({...shelfPosition});
         // console.log(shelfPosition);
         //Spawn shelf 1 at shelfPosition
-        this.spawnShelfRack(scene, {...shelfPosition}, rotation);
-    
+        this.spawnShelfRack(scene, interactionManager, {...shelfPosition}, rotation);
+        
         //Spawn shelf 2 at shelfPosition
         shelfPosition.y += 0.6;
         this.shelfPositions.push({...shelfPosition});
-        this.spawnShelfRack(scene, {...shelfPosition}, rotation);
+        this.spawnShelfRack(scene, interactionManager, {...shelfPosition}, rotation);
     
         //Spawn shelf 3 at shelfPosition
         shelfPosition.y += 0.6;
         this.shelfPositions.push({...shelfPosition});
-        this.spawnShelfRack(scene, {...shelfPosition}, rotation);
+        this.spawnShelfRack(scene, interactionManager, {...shelfPosition}, rotation);
         
+        this.spawnProducts(scene, interactionManager);
         console.log(this);
     }
 
-    spawnShelfRack(scene, position, rotation){
+    spawnShelfRack(scene,interactionManager, position, rotation) {
         //Spawn shelf at shelfPosition
         const loader = new GLTFLoader();
         loader.load(shelf, function(gltf){
@@ -71,11 +73,9 @@ export class Shelf {
             gltf.scene.position.set(position.x, position.y, position.z);
             gltf.scene.rotation.set(rotation.x, rotation.y, rotation.z);
         });
-
-        this.spawnProducts(scene);
     }
 
-    spawnProducts(scene) {
+    spawnProducts(scene, interactionManager) {
         //Spawn all products on the shelf
         console.log("Length of products: " + this.products.length);
         console.log(this.products);
@@ -93,6 +93,8 @@ export class Shelf {
             position.x -= X_AXIS_OFFSET;
             position.y += Y_AXIS_OFFSET;
             position.z += this.rotation.y == 0 ? -Z_AXIS_OFFSET : Z_AXIS_OFFSET;
+            console.log("Hitbox for : " + product.name);
+            place_hitbox(scene, position, this.rotation, interactionManager, product);
             this.spawnProduct(scene, product, position);
         }
     }

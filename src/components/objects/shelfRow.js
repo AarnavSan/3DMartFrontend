@@ -61,11 +61,11 @@ export class ShelfRow {
         }
     }
 
-    spawnAllShelves(scene) {
+    spawnAllShelves(scene, interactionManager) {
         //Spawn all shelves in the row
         for (let i = 0; i < this.shelves.length; i++) {
             let shelf = this.shelves[i];
-            shelf.spawnShelf(scene);
+            shelf.spawnShelf(scene, interactionManager);
         }
     }
 }

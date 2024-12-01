@@ -5,23 +5,26 @@ import {spawnRoom } from '../render_room.js';
 import { spawnBoxProduct } from '../threedplacerfunctions/create_products.js';
 import { Product } from './product.js';
 import { ProductCategory } from './productCategory.js';
+import { Cart } from './cart.js';
 import { ShelfGrid } from './shelfGrid.js';
 
 export class GroceryStore{
 
-    constructor(scene, camera, renderer, store_data){
+    constructor(scene, interactionManager, camera, renderer, store_data){
         this.scene = scene;
         this.camera = camera;
+        this.interactionManager = interactionManager;
         this.renderer = renderer;
         this.store_data = store_data;
         this.productCategories = [];
         this.setupStoreData();
+        this.cart = new Cart();
     }
     
     setupStoreData(){
         for(let i = 0; i < this.store_data.length; i++){
             let productCategory = this.store_data[i];
-            this.productCategories.push(new ProductCategory(productCategory.type, productCategory.data));
+            this.productCategories.push(new ProductCategory(this, productCategory.type, productCategory.data));
         }
         console.log(this.productCategories);
     }
@@ -46,7 +49,7 @@ export class GroceryStore{
         this.shelfGrid.setStartPosition(initialLeftMostPosition);
 
         //Spawn shelves
-        this.shelfGrid.spawnShelfRows(this.scene);
+        this.shelfGrid.spawnShelfRows(this.scene, this.interactionManager);
     }
 
     assignAllPositionsAndRotations(){
