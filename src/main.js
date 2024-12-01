@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { FirstPersonControls } from 'three/addons/controls/FirstPersonControls.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import ScrollBasedController from './components/CameraController/ScrollBasedController.js';
 
 import { InteractionManager } from 'three.interactive';
 
@@ -49,16 +50,19 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix(); // Apply changes
 })
 
-const controls = new OrbitControls( camera, renderer.domElement );
-controls.target = new THREE.Vector3(0,-10,-10);
-
+// const controls = new OrbitControls( camera, renderer.domElement );
+// controls.target = new THREE.Vector3(0,-10,-10);
+// const controls = new CustomFirstPersonControls( camera, scene, renderer.domElement );
 
 //controls.update() must be called after any manual changes to the camera's transform
 camera.position.set( 0, 10, 0 );
-controls.update();
+//controls.update();
 
 let groceryStore = new GroceryStore(document, scene, interactionManager, camera, renderer, database);
 groceryStore.create_room();
+
+let scrollBasedController = new ScrollBasedController(camera, document, groceryStore.shelfGrid);
+scrollBasedController.initAllCameraPositionsAndRotations(groceryStore.shelfGrid);
 
 // //Spawn Grocery Store Room model
 // spawnRoom(scene);
@@ -79,7 +83,7 @@ function animate() {
 	requestAnimationFrame( animate );
 
 	// required if controls.enableDamping or controls.autoRotate are set to true
-	controls.update();
+	// controls.update();
 	interactionManager.update();
 
 	renderer.render( scene, camera );
