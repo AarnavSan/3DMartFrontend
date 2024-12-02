@@ -39,6 +39,8 @@ I am passionate about transforming real-life walk-through experiences, such as m
 
 6. Open the localhost it is hosted at (default on port 3000).
 
+7. Use left and right arrow keys to "scroll" through the different products!!
+
 ## How to Add or Change a Product
 
 1. Open the following file in a text editor:
