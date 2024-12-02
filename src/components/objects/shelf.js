@@ -96,7 +96,61 @@ export class Shelf {
             console.log("Hitbox for : " + product.name);
             place_hitbox(scene, position, this.rotation, interactionManager, product);
             this.spawnProduct(scene, product, position);
+            this.spawnSproductTag(scene, position, product);
         }
+    }
+
+    spawnSproductTag(scene, position, product) {
+        // Spawn product tag at given position
+        // use three js Text geometry to create a 3d text
+        // Add the text to the scene
+        // Spawn the product name and price
+
+        // Spawn a white rectangle with the product name and price
+        // Add the rectangle to the scene
+        // Add the product name and price to the rectangle
+    const canvas = document.createElement('canvas');
+    canvas.width = 400;
+    canvas.height = 100;
+    const context = canvas.getContext('2d');
+
+    // Draw background
+    context.fillStyle = 'white';
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Calculate font size based on product name length
+    let fontSize = 48;
+    if (product.name.length > 10) {
+        fontSize = 48 - (product.name.length - 10) * 1.5;
+        if (fontSize < 22) fontSize = 22; // Minimum font size
+    }
+
+    // Draw product name
+    context.fillStyle = 'black';
+    context.font = `bold ${fontSize}px Arial`;
+    context.fillText(product.name, 10, 40);
+
+    // Draw product price
+    context.font = '30px Arial';
+    context.fillText(`$${product.price.toFixed(2)}`, 10, 80);
+
+    const texture = new THREE.CanvasTexture(canvas);
+    const material = new THREE.MeshBasicMaterial({ map: texture });
+    const geometry = new THREE.PlaneGeometry(0.4, 0.1);
+    const mesh = new THREE.Mesh(geometry, material);
+
+    let meshPosition = {...position};
+    let meshRotation = {...this.rotation};
+
+    //meshPosition.y += 0.5;
+    meshPosition.z += meshRotation.y == 0 ? -0.6 : 0.6;
+
+    meshRotation.y = meshRotation.y == 0 ? Math.PI : 0;
+
+    mesh.position.set(meshPosition.x, meshPosition.y, meshPosition.z);
+    mesh.rotation.set(meshRotation.x, meshRotation.y, meshRotation.z);
+
+    scene.add(mesh);
     }
 
     spawnProduct(scene, product, position) {

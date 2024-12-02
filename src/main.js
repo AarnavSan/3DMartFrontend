@@ -8,16 +8,22 @@ import { InteractionManager } from 'three.interactive';
 import database from './components/data/database.json';
 import { GroceryStore } from './components/objects/grocerystore.js';
 
-console.log(database);
+//The main.js file is the entry point of the application
+//All the code starts from here
+//The scene, camera, renderer, and other central objects are created here
 
-
+// Three.js is a 3D library that makes it easy to create 3D graphics in the browser
+// The scene is the container for all objects in the 3D space
 // Scene
 const scene = new THREE.Scene();
 
+// The camera is the object that captures the 3D scene
 // Camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.6, 1200);
 camera.position.z = 5; // Set camera position
 
+// The renderer is the object that renders the 3D scene
+//It handles the rendering of the scene
 // Renderer
 const renderer = new THREE.WebGLRenderer({antialias: true});
 function setupRenderer(renderer){
@@ -36,6 +42,8 @@ function setupRenderer(renderer){
 setupRenderer(renderer);
 document.body.appendChild(renderer.domElement); // Add renderer to HTML as a canvas element
 
+// The interaction manager is the object that handles user interactions with the 3D scene
+// Like hovering, clicking etc.
 // Interaction Manager
 const interactionManager = new InteractionManager(
 	renderer,
@@ -50,42 +58,38 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix(); // Apply changes
 })
 
+
+// Create a grocery store object
+// This object is responsible for creating and managing the entire grocery store
+// As well as all of the UI elements and interactions
+// Hence it needs all the central objects like the scene, camera, renderer, etc.
+let groceryStore = new GroceryStore(document, scene, interactionManager, camera, renderer, database);
+groceryStore.create_room();
+
+// Currently commented out, but below are the different types of camera controls that can be used
+// that are included in the threejs library
+// However, we have created our own custom camera controls
 // const controls = new OrbitControls( camera, renderer.domElement );
 // controls.target = new THREE.Vector3(0,-10,-10);
 // const controls = new CustomFirstPersonControls( camera, scene, renderer.domElement );
 
-//controls.update() must be called after any manual changes to the camera's transform
-camera.position.set( 0, 10, 0 );
-//controls.update();
-
-let groceryStore = new GroceryStore(document, scene, interactionManager, camera, renderer, database);
-groceryStore.create_room();
-
+// This is the custom camera controller that we have created
+// It works on mouse scroll and moves the camera to different set positions
+// More on information about this is present in the ScrollBasedController.js file
 let scrollBasedController = new ScrollBasedController(camera, document, groceryStore.shelfGrid);
 scrollBasedController.initAllCameraPositionsAndRotations(groceryStore.shelfGrid);
+scrollBasedController.moveToCurrentCameraPositionAndRotation();
 
-// //Spawn Grocery Store Room model
-// spawnRoom(scene);
-
-//Spawn Box Product
-// spawnBoxProduct(scene, 
-// 	{x: 0, y: 0, z: 0}, 
-// 	{x: 0, y: 0, z: 0}, 
-// 	{x: 1, y: 1, z: 0.1}, 
-// 	"https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png",
-// 	"https://cdn.pixabay.com/photo/2017/02/14/03/03/ama-dablam-2064522_1280.jpg",
-// 	"https://cdn.pixabay.com/photo/2024/03/08/16/22/clouds-8621202_1280.jpg",
-// 	"https://cdn.pixabay.com/photo/2021/11/21/21/14/mountain-6815304_1280.jpg");
-
-
+// The animate function is called every frame
 function animate() {
 
+	// Call the animate function recursively
 	requestAnimationFrame( animate );
 
-	// required if controls.enableDamping or controls.autoRotate are set to true
-	// controls.update();
+	// Update the Interaction Manager
 	interactionManager.update();
 
+	// Render the scene
 	renderer.render( scene, camera );
 }
 animate();

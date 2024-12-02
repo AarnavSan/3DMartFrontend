@@ -8,7 +8,6 @@ export class ShelfGrid{
         this.totalProductCategories = productCategories.length;
         this.shelfRows = this.createShelfRows(totalProductCategories);
         this.totalShelves = this.calculateRowShelfCount();
-
     }
 
     createShelfRows(numberOfShelfRows){
