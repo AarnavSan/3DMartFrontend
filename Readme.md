@@ -13,7 +13,7 @@ I am passionate about transforming real-life walk-through experiences, such as m
 ## How to Run
 
 1. Clone the repository:
-    ```sh
+    ```bash
     git clone https://github.com/yourusername/your-repository-name.git
     ```
 
