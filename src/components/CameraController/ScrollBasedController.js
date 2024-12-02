@@ -61,14 +61,16 @@ class ScrollBasedController {
     initializeDocumentListeners() {
         //On Scroll Up, move to next camera position
         //On Scroll Down, move to previous camera position
-        this.document.addEventListener('wheel', (event) => {
-            if (event.deltaY < 0) {
-                this.nextCameraPosition();
-            }
-            else {
-                this.prevCameraPosition();
-            }
-        });
+        //This is currently commented out as other scrolling events are used
+
+        // this.document.addEventListener('wheel', (event) => {
+        //     if (event.deltaY < 0) {
+        //         this.nextCameraPosition();
+        //     }
+        //     else {
+        //         this.prevCameraPosition();
+        //     }
+        // });
 
         // On Arrow Up, move to next camera position
         // On Arrow Down, move to previous camera position
