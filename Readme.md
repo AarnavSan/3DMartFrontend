@@ -34,7 +34,7 @@ I am passionate about transforming real-life walk-through experiences, such as m
 
 5. Run the Express.js server:
     ```sh
-    node express.js
+    node server.js
     ```
 
 6. Open the localhost it is hosted at (default on port 3000).
@@ -92,3 +92,11 @@ Here's an example of a product:
     ]
 }
 ```
+
+## Results
+### Grocery Store
+![3D Grocery Store](./readme_images/grocery_store.png)
+### Product Window
+![Product Window](./readme_images/product_window.png)
+### Cart Window
+![Cart Window](./readme_images/cart_window.png)
