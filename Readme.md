@@ -49,7 +49,8 @@ I am passionate about transforming real-life walk-through experiences, such as m
 2. To add a new product category, you need two keys: `type` and `data`. `type` is the name of the product category, and `data` is an array of products. Each product should have the following attributes: `name`, `type` (brand), `nutrition`, `price`, `quantity`, `image`, `model_type` (box or cylinder types supported for now), `scale` (a 3D scale), and `rowsOfProduct` (to show that certain products are getting sold more than others).
 
 Here's an example of a product category:
-    ```json
+    ```
+    json
     {
         "type": "breakfast_cereals",
         "data": [
