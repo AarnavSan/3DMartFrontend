@@ -8,6 +8,10 @@ export class ProductCategory{
         this.products = this.unpackProducts(products_data);
         this.totalProducts = this.products.length;
     }
+
+    /**
+     * Unpacks an array of product data objects into an array of Product instances.
+     */
     unpackProducts(products_data){
         let products = [];
         for(let i = 0; i < products_data.length; i++){
@@ -28,6 +32,15 @@ export class ProductCategory{
             products.push(product);
         }
         return products;
+    }
+
+    // Open the view product window for this product in the grocery store
+    addThisProductToCart(product){
+        this.parent.addThisProductToCart(product, quantity);
+    }
+
+    openProductWindow(product){
+        this.parent.openProductWindow(product);
     }
     
 }

@@ -12,6 +12,7 @@ export class Shelf {
         this.products = products;
     }
 
+    // Set the position and rotation of the shelf
     setPosition(position) {
         this.position = position;
     }
@@ -19,16 +20,14 @@ export class Shelf {
         this.rotation = rotation;
     }
 
-    getProductFromPosition(position) {
-        //Return the product at the given position
-        //Calculate which product to be returned based on order of products and base position
-    }
-
+    // Spawn the shelf in the scene
     spawnShelf(scene, interactionManager) {
         let position = this.position;
         let rotation = this.rotation;
+
         //SPAWN SHELF WALL
         //spawn Shelf wall based on given position and rotation
+        // Spawn the shelf wall at the given position and rotation
         const loader = new GLTFLoader();
         loader.load(shelfWall, function(gltf){
             
@@ -36,35 +35,27 @@ export class Shelf {
             gltf.scene.position.set(position.x, position.y, position.z);
             gltf.scene.rotation.set(rotation.x, rotation.y, rotation.z);
         });
-    
 
         //SPAWN SHELVES
-        //Spawn 2 shelf based on given position and rotation
+        //Spawn 3 shelves based on given position and rotation
         // Create an offset based on the position of the shelf wall
         // So that the shelves are placed on the wall
         // At a certain height
         this.shelfPositions = [];
-
         let shelfPosition = {x: position.x, y: position.y - 1, z: position.z};
-        this.shelfPositions.push({...shelfPosition});
-        // console.log(shelfPosition);
-        //Spawn shelf 1 at shelfPosition
-        this.spawnShelfRack(scene, interactionManager, {...shelfPosition}, rotation);
+
+        // Spawn 3 shelves in a loop
+        for (let i = 0; i < 3; i++) {
+            this.shelfPositions.push({...shelfPosition});
+            this.spawnShelfRack(scene, interactionManager, {...shelfPosition}, rotation);
+            shelfPosition.y += 0.6;
+        }
         
-        //Spawn shelf 2 at shelfPosition
-        shelfPosition.y += 0.6;
-        this.shelfPositions.push({...shelfPosition});
-        this.spawnShelfRack(scene, interactionManager, {...shelfPosition}, rotation);
-    
-        //Spawn shelf 3 at shelfPosition
-        shelfPosition.y += 0.6;
-        this.shelfPositions.push({...shelfPosition});
-        this.spawnShelfRack(scene, interactionManager, {...shelfPosition}, rotation);
-        
+        //SPAWN PRODUCTS
         this.spawnProducts(scene, interactionManager);
-        console.log(this);
     }
 
+    // Spawn the shelf rack in the scene
     spawnShelfRack(scene,interactionManager, position, rotation) {
         //Spawn shelf at shelfPosition
         const loader = new GLTFLoader();
@@ -75,10 +66,9 @@ export class Shelf {
         });
     }
 
+    // Spawn the products in the scene
     spawnProducts(scene, interactionManager) {
         //Spawn all products on the shelf
-        console.log("Length of products: " + this.products.length);
-        console.log(this.products);
         for (let i = 0; i < this.products.length; i++) {
             let product = this.products[i];
             let position = {...this.shelfPositions[i]};
@@ -134,29 +124,32 @@ export class Shelf {
     context.font = '30px Arial';
     context.fillText(`$${product.price.toFixed(2)}`, 10, 80);
 
+    // Create texture and material
     const texture = new THREE.CanvasTexture(canvas);
     const material = new THREE.MeshBasicMaterial({ map: texture });
     const geometry = new THREE.PlaneGeometry(0.4, 0.1);
     const mesh = new THREE.Mesh(geometry, material);
 
+    // Position and rotation of the mesh
     let meshPosition = {...position};
     let meshRotation = {...this.rotation};
 
-    //meshPosition.y += 0.5;
+    // Offset the position based on the rotation
     meshPosition.z += meshRotation.y == 0 ? -0.6 : 0.6;
 
+    // Rotate the mesh based on the rotation of the shelf
     meshRotation.y = meshRotation.y == 0 ? Math.PI : 0;
 
+    // Set the position and rotation of the mesh
     mesh.position.set(meshPosition.x, meshPosition.y, meshPosition.z);
     mesh.rotation.set(meshRotation.x, meshRotation.y, meshRotation.z);
 
+    // Add the mesh to the scene
     scene.add(mesh);
     }
 
     spawnProduct(scene, product, position) {
         //Spawn product at given position
-        
-        console.log(product);
         place_box_products(scene, position, this.rotation, product);
     }
 }

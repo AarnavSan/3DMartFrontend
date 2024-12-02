@@ -11,10 +11,17 @@ export class ShelfGrid{
     }
 
     createShelfRows(numberOfShelfRows){
+        //Create shelf rows based on the number of shelf rows
         let shelfRows = [];
+        //Create a shelf row for each product category
+        //Each shelf row will have a product category and the products in that category
+        //The shelf row will be responsible for spawning rows of shelves
         for(let i = 0; i < numberOfShelfRows; i++){
             let productCategory = this.productCategories[i];
             let products = productCategory.products;
+            
+            //Create a shelf row with the product category and products
+            //and add it to the shelf rows array
             let shelfRow = new ShelfRow(productCategory, products);
             shelfRows.push(shelfRow);
         }
@@ -22,13 +29,16 @@ export class ShelfGrid{
     }
 
     calculateRowShelfCount(){
+        //Calculate the total number of shelves in the shelf grid
         let totalShelves = 0;
             for(let i = 0; i < this.shelfRows.length; i++){
                 totalShelves += this.shelfRows[i].shelves.length;
             }
-            return totalShelves;
+        return totalShelves;
     }
 
+    //Set the initial position of the shelf grid
+    //This is the position of the leftmost wall of the shelf grid
     setStartPosition(position){
         this.startPosition = position;
         this.assignAllPositionsAndRotationsToShelfRows();
@@ -60,6 +70,7 @@ export class ShelfGrid{
         }
     }
 
+    //Spawn all shelf rows
     spawnShelfRows(scene, interactionManager){
         for(let i = 0; i < this.shelfRows.length; i++){
             let shelfRow = this.shelfRows[i];

@@ -18,17 +18,21 @@ export class Product{
         this.nutritionFacts = new NutritionFacts(nutrition.calories, nutrition.carbs, nutrition.fat, nutrition.fiber, nutrition.minerals, nutrition.potassium, nutrition.protein, nutrition.sodium, nutrition.sugars, nutrition.vitamins);
     }
     
+
+    // Open the view product window for this product in the grocery store
     viewThisProduct(){
         let newProduct = {...this};
         newProduct.quantity = 1;
-        this.parent.parent.openProductWindow(newProduct);
+        this.parent.openProductWindow(newProduct);
     }
 
+    // Add this product to the cart
     addThisProductToCart(quantity=1){
-        this.parent.parent.cart.addProduct(this, quantity);
+        this.parent.addProduct(this, quantity);
     }
 }
 
+// Nutrition Facts Class to store an object with nutrition facts
 class NutritionFacts{
     constructor(calories, carbs, fat, fiber, minerals, potassium, protein, sodium, sugars, vitamins){
         this.calories = calories;
@@ -41,20 +45,5 @@ class NutritionFacts{
         this.sodium = sodium;
         this.sugars = sugars;
         this.vitamins = vitamins;
-        }
-
-        get nutritionFacts() {
-            return {
-                calories: this.calories,
-                carbs: this.carbs,
-                fat: this.fat,
-                fiber: this.fiber,
-                minerals: this.minerals,
-                potassium: this.potassium,
-                protein: this.protein,
-                sodium: this.sodium,
-                sugars: this.sugars,
-                vitamins: this.vitamins
-            };
         }
 }

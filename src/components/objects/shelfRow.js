@@ -19,23 +19,30 @@ export class ShelfRow {
             //Each shelf will have 3 products
             //If there are less than 3 products, then the shelf will have less than 3 products
             let chosenProducts = [];
-            for (let j = 0; i < this.products.length && j < 3; j++, i++) {
+            for (let j = 0; i < this.products.length && j < 3; j++) {
                 chosenProducts.push(this.products[i]);
+                i++;
             }
-
+            
+            //If there are less than 3 products, then decrement i so that the next shelf can start with the remaining products
+            i--;
             //Create the shelf object with chosen 3 products
             let shelf = new Shelf(this.productCategory, chosenProducts);
 
             //Add the shelf to the shelves array
             shelves.push(shelf);
         }
+        console.log(shelves);
         return shelves
     }
 
+    //Set the starting position of the shelf row
     setStartPosition(position) {
         this.startPosition = position;
         this.setAllShelvesPositionAndRotation();
     }
+
+    //Set the rotation of the shelf row
     setRotation(rotation) {
         this.rotation = rotation;
     }
