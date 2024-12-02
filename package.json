@@ -13,9 +13,12 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "file-loader": "^6.2.0",
+    "fs": "^0.0.1-security",
     "gsap": "^3.12.5",
+    "jsonfile": "^6.1.0",
     "mongodb": "^6.11.0",
     "mongoose": "^8.8.3",
+    "path": "^0.12.7",
     "three": "^0.170.0",
     "three.interactive": "^1.8.0",
     "url-loader": "^4.1.1",

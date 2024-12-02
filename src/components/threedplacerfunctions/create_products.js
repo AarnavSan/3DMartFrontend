@@ -51,6 +51,8 @@ function spawnHitBox(scene, position, rotation, interactionManager, product){
     // Set the name of the mesh to product.product_id
     mesh.name = product.name + "_$_" + product.product_id;
 
+    // Add event listeners for mouseover, mouseout, and click
+    // For the hitboxes to hover over and click on the products
     mesh.addEventListener('mouseover', (event) => {
         event.target.material.color.set(0xff0000);
         event.target.material.opacity = 0.4;
@@ -61,23 +63,8 @@ function spawnHitBox(scene, position, rotation, interactionManager, product){
         event.target.material.opacity = 0;
         document.body.style.cursor = 'default';
       });
-      mesh.addEventListener('mousedown', (event) => {
-    //event.target.scale.set(1.1, 1.1, 1.1);
-      });
-      mesh.addEventListener('mouseup', (event) => {
-        //event.target.scale.set(1.1, 1.1, 1.1);
-        if (event.wasIntersectedOnMouseDown) {
-          // Object was intersected when mouse down fired, so this is essentially a click event
-         
-        } else {
-          // Object was not intersected when mouse down fired
-        }
-      });
       mesh.addEventListener('click', (event) => {
-        //event.target.scale.set(1.0, 1.0, 1.0);
-        //console.log(event);
         if(event.target.material.opacity === 0.4){
-            //console.log(product.parent);
             product.viewThisProduct();
         }
       });

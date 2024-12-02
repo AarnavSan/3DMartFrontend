@@ -36,7 +36,6 @@ export class GroceryStore {
             let productCategory = this.store_data[i];
             this.productCategories.push(new ProductCategory(this, productCategory.type, productCategory.data));
         }
-        //console.log(this.productCategories);
     }
 
     //Spawn the grocery store room
@@ -53,7 +52,6 @@ export class GroceryStore {
         //Now we use the shelfGrid to keep a record of the shelves
         //Each shelfGrid will have a shelfRow
         this.shelfGrid = new ShelfGrid(shelfRowCount, this.productCategories);
-        // console.log(this.shelfGrid);
 
         //Assign shelves their positions
         //Spawn first row of shelves on the left wall
@@ -97,7 +95,7 @@ export class GroceryStore {
             fontWeight: 'bold',
             transition: 'color 0.3s',
         });
-    
+
         // Add hover effects to the close button
         closeProductButton.addEventListener('mouseover', () => {
             closeProductButton.style.color = '#ff0000';
@@ -105,7 +103,7 @@ export class GroceryStore {
         closeProductButton.addEventListener('mouseout', () => {
             closeProductButton.style.color = '#ff5c5c';
         });
-    
+
         // Create the product view window
         this.productWindow = this.document.createElement('div');
         Object.assign(this.productWindow.style, {
@@ -128,11 +126,11 @@ export class GroceryStore {
             fontFamily: '"Arial", sans-serif',
             textAlign: 'center',
         });
-    
+
         // Append the close button to the product view window
         this.productWindow.appendChild(closeProductButton);
         this.document.body.appendChild(this.productWindow);
-    
+
         // Function to update the product view window with the selected product's details
         const updateProductWindow = (product) => {
             let productHTML = `
@@ -165,7 +163,7 @@ export class GroceryStore {
             this.productWindow.innerHTML = '';
             this.productWindow.insertAdjacentHTML('beforeend', productHTML);
             this.productWindow.appendChild(closeProductButton);
-    
+
             // Add event listener to the "Add to Cart" button
             const addToCartButton = this.document.getElementById('addToCartButton');
             addToCartButton.addEventListener('click', () => {
@@ -177,7 +175,7 @@ export class GroceryStore {
                     this.toggleCartWindow();
                 }
             });
-    
+
             // Add hover effects to the "Add to Cart" button
             addToCartButton.addEventListener('mouseover', () => {
                 addToCartButton.style.backgroundColor = '#218838';
@@ -192,7 +190,7 @@ export class GroceryStore {
                 addToCartButton.style.transform = 'scale(1)';
             });
         };
-    
+
         // Function to toggle the visibility of the product view window
         const toggleProductWindow = () => {
             if (this.isViewingProduct && this.productUnderView) {
@@ -203,18 +201,18 @@ export class GroceryStore {
                 this.productWindow.style.display = 'none';
             }
         };
-    
+
         // Add event listener to the close button to close the product view window
         closeProductButton.addEventListener('click', () => {
             this.isViewingProduct = false;
             toggleProductWindow();
         });
-    
+
         // Assign the toggle function to the class instance
         this.toggleProductWindow = toggleProductWindow;
     }
-    
-    
+
+
 
     /**
      * Manages the shopping cart button and cart window.
@@ -261,16 +259,16 @@ export class GroceryStore {
             fontFamily: '"Arial", sans-serif',
             boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
         });
-    
+
         // Initial content for the cart window
         this.cartWindow.innerHTML = `
             <h2 style="margin-bottom: 20px; color: #333;">Shopping Cart</h2>
             <p style="color: #777;">Your cart is empty.</p>
         `;
-    
+
         // Append the cart window to the document body
         this.document.body.appendChild(this.cartWindow);
-    
+
         // Create the close button for the cart window
         const closeButton = this.document.createElement('span');
         closeButton.innerHTML = '&times;';
@@ -284,7 +282,7 @@ export class GroceryStore {
             fontWeight: 'bold',
             transition: 'color 0.3s',
         });
-    
+
         // Add hover effects to the close button
         closeButton.addEventListener('mouseover', () => {
             closeButton.style.color = '#ff0000';
@@ -292,20 +290,20 @@ export class GroceryStore {
         closeButton.addEventListener('mouseout', () => {
             closeButton.style.color = '#ff5c5c';
         });
-    
+
         // Append the close button to the cart window
         this.cartWindow.appendChild(closeButton);
-    
+
         // Function to update the cart window with the current cart contents
         const updateCartWindow = () => {
             const totalAmount = this.cart.totalAmount;
             const totalPrice = this.cart.totalPrice;
             const products = this.cart.products;
-    
+
             let productsHTML = `
             <h2 style="margin-bottom: 20px; color: #333;">Shopping Cart</h2>
             `;
-    
+
             // If there are products in the cart, display them
             if (products.length > 0) {
                 products.forEach(product => {
@@ -324,11 +322,12 @@ export class GroceryStore {
                     </div>
                     `;
                 });
-    
-                // Display total items and total price
+
+                // Display total items, total price, and add a checkout button
                 productsHTML += `
                     <p style="margin-top: 20px; font-size: 1rem; color: #444;">Total Items: <strong>${totalAmount}</strong></p>
                     <p style="margin-top: 5px; font-size: 1rem; color: #444;">Total Price: <strong>$${totalPrice.toFixed(2)}</strong></p>
+                    <button id="checkout-button" style="margin-top: 20px; padding: 10px 20px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer; font-size: 1rem;">Checkout</button>
                 `;
             } else {
                 // If the cart is empty, display a message
@@ -336,14 +335,14 @@ export class GroceryStore {
                     <p style="color: #777;">Your cart is empty.</p>
                 `;
             }
-    
+
             // Update the cart window content
             this.cartWindow.innerHTML = productsHTML;
-    
+
             // Add event listeners to plus and minus buttons
             const plusButtons = this.cartWindow.querySelectorAll('.plus-button');
             const minusButtons = this.cartWindow.querySelectorAll('.minus-button');
-    
+
             plusButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const productId = button.getAttribute('data-product-id');
@@ -352,13 +351,12 @@ export class GroceryStore {
                     updateCartWindow();
                 });
             });
-    
+
             minusButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const productId = button.getAttribute('data-product-id');
                     const product = products.find(p => p.product_id === productId);
                     if (product) {
-                        // Remove the product's div if quantity becomes 0
                         if (product.quantity === 1) {
                             const productDiv = this.cartWindow.querySelector(`[data-product-id="${productId}"]`);
                             if (productDiv) {
@@ -366,19 +364,28 @@ export class GroceryStore {
                             }
                         }
                         this.cart.removeProduct(product);
-                        
                     }
                     updateCartWindow();
                 });
             });
-            
-    
+
+            // Add event listener to the checkout button
+            const checkoutButton = this.cartWindow.querySelector('#checkout-button');
+            if (checkoutButton) {
+                checkoutButton.addEventListener('click', () => {
+                    this.cart.checkoutCart(); // Call the checkoutCart method
+                    //location.reload(); // Refresh the page after checkout
+                });
+            }
+
+
             // Ensure the close button is still present
             if (!this.cartWindow.contains(closeButton)) {
                 this.cartWindow.appendChild(closeButton);
             }
         };
-    
+
+
         // Function to toggle the visibility of the cart window
         const toggleCartWindow = () => {
             if (this.isCartOpen) {
@@ -388,7 +395,7 @@ export class GroceryStore {
                 this.cartWindow.style.display = 'none';
             }
         };
-    
+
         // Create the cart button
         const cartButton = this.document.createElement('button');
         cartButton.innerHTML = '🛒';
@@ -407,7 +414,7 @@ export class GroceryStore {
             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
             transition: 'background-color 0.3s, transform 0.2s',
         });
-    
+
         // Add hover and click effects to the cart button
         cartButton.addEventListener('mouseover', () => {
             cartButton.style.backgroundColor = '#218838';
@@ -421,10 +428,10 @@ export class GroceryStore {
         cartButton.addEventListener('mouseup', () => {
             cartButton.style.transform = 'scale(1)';
         });
-    
+
         // Append the cart button to the document body
         this.document.body.appendChild(cartButton);
-    
+
         // Function to toggle the visibility of the cart button
         const toggleCartButton = () => {
             if (this.isCartOpen) {
@@ -434,26 +441,24 @@ export class GroceryStore {
             }
             toggleCartWindow();
         };
-    
+
         // Add event listener to the close button to close the cart window
         closeButton.addEventListener('click', () => {
             this.isCartOpen = false;
             toggleCartWindow();
             toggleCartButton();
         });
-    
+
         // Add event listener to the cart button to open the cart window
         cartButton.addEventListener('click', () => {
             this.isCartOpen = true;
             toggleCartWindow();
             toggleCartButton();
         });
-    
+
         // Assign the toggle function to the class instance
         this.toggleCartWindow = toggleCartWindow;
     }
-    
-    
 
     // Opens the product view window with the selected product's details
     openProductWindow(product) {

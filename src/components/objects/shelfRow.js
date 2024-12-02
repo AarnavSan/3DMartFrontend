@@ -32,7 +32,6 @@ export class ShelfRow {
             //Add the shelf to the shelves array
             shelves.push(shelf);
         }
-        console.log(shelves);
         return shelves
     }
 

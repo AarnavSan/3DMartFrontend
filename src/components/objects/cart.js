@@ -1,4 +1,5 @@
 import { Product } from "./product";
+import { checkoutCart } from "../data/databasemanager";
 
 export class Cart{
     constructor(){
@@ -61,6 +62,13 @@ export class Cart{
             this.totalAmount += product.quantity;
             this.totalPrice += product.price * product.quantity;
         });
-        console.log(this.totalPrice);
     }
+
+    checkoutCart(){
+        // Checkout the cart
+        // This is where you would implement the payment processing
+        // For now, we will just log the cart data
+        checkoutCart(this);
+    }
+
 }

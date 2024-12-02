@@ -9,6 +9,7 @@ import database from './components/data/database.json';
 import { GroceryStore } from './components/objects/grocerystore.js';
 
 console.log(database);
+
 //The main.js file is the entry point of the application
 //All the code starts from here
 //The scene, camera, renderer, and other central objects are created here

@@ -83,7 +83,6 @@ export class Shelf {
             position.x -= X_AXIS_OFFSET;
             position.y += Y_AXIS_OFFSET;
             position.z += this.rotation.y == 0 ? -Z_AXIS_OFFSET : Z_AXIS_OFFSET;
-            console.log("Hitbox for : " + product.name);
             place_hitbox(scene, position, this.rotation, interactionManager, product);
             this.spawnProduct(scene, product, position);
             this.spawnSproductTag(scene, position, product);

@@ -11,11 +11,14 @@ class ScrollBasedController {
         this.initializeDocumentListeners();
     }
 
+    //Add a camera position and rotation to the list
+    //Called when a shelf is placed in the store
     addCameraPositionAndRotation(position, rotation) {
         this.cameraPositions.push(position);
         this.cameraRotations.push(rotation);
     }
 
+    //Move to the next camera position
     nextCameraPosition() {
         if (this.currentCameraPositionIndex < this.cameraPositions.length - 1) {
             this.currentCameraPositionIndex++;
@@ -26,6 +29,7 @@ class ScrollBasedController {
         this.moveToCurrentCameraPositionAndRotation();
     }
 
+    //Move to the previous camera position
     prevCameraPosition() {
         if (this.currentCameraPositionIndex > 0) {
             this.currentCameraPositionIndex--;
@@ -36,7 +40,10 @@ class ScrollBasedController {
         this.moveToCurrentCameraPositionAndRotation();
     }
 
+    //Move to the current camera position
     moveToCurrentCameraPositionAndRotation() {
+        //Move the camera to the current camera position
+        // Use gsap to animate the camera movement
         gsap.to(this.camera.position, {
             x: this.cameraPositions[this.currentCameraPositionIndex].x,
             y: this.cameraPositions[this.currentCameraPositionIndex].y,
