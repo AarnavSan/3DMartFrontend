@@ -14,7 +14,6 @@
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "file-loader": "^6.2.0",
-    "fs": "^0.0.1-security",
     "gsap": "^3.12.5",
     "jsonfile": "^6.1.0",
     "mongodb": "^6.11.0",
