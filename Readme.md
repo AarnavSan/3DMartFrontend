@@ -1,5 +1,5 @@
 # 3D Grocery Store 
-
+**Disclaimer:** All logos and brand names used in this project are the property of their respective companies and are used here for educational purposes only. I do not claim ownership of any logos or brand names referenced in this project.
 ## Project Description
 
 ### Why a 3D Grocery Store?
